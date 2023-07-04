@@ -5,6 +5,7 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
+import { basicSetting } from '../../../Styles/common';
 
 const Header = () => {
 	const navigate = useNavigate();
@@ -44,12 +45,11 @@ const Header = () => {
 export default Header;
 
 const Wrapper = styled.div`
-	width: 80%;
-	margin: 0 auto;
+	${basicSetting}
 	display: flex;
 	justify-content: space-between;
 	margin-top: 50px;
-	margin-bottom: 50px;
+	margin-bottom: 60px;
 `;
 
 const Logos = styled.div`

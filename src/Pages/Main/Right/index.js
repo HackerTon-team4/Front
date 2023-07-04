@@ -39,7 +39,7 @@ const BackGround = styled.div`
 	width: 320px;
 	height: 500px;
 	margin: 0 auto;
-	background-image: url('Assets/Images/backGround.png');
+	background-image: url('/Assets/Images/backGround.png');
 	background-size: cover;
 	background-position: center;
 	z-index: 10;

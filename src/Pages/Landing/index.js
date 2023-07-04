@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight, faPowerOff } from '@fortawesome/free-solid-svg-icons';
+import { basicSetting } from '../../Styles/common';
 const LandingPage = () => {
 	const navigate = useNavigate();
 	const goTest = () => {
@@ -49,8 +50,7 @@ const LandingPage = () => {
 export default LandingPage;
 
 const Wrapper = styled.div`
-	width: 80%;
-	margin: 0 auto;
+	${basicSetting}
 	display: flex;
 `;
 

@@ -26,7 +26,7 @@ const Left = () => {
 export default Left;
 const BackGround = styled.div`
 	width: 700px;
-	background-image: url('Assets/Images/backGround.png');
+	background-image: url('/Assets/Images/backGround.png');
 	background-size: cover;
 	background-position: center;
 	z-index: 10;
@@ -38,7 +38,6 @@ const Wrapper = styled.div`
 	height: 450px;
 	margin: 0 auto;
 	padding-top: 50px;
-	border: 1px solid #407bf0;
 	border-radius: 60px;
 	display: flex;
 	background-color: transparent;

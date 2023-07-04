@@ -22,8 +22,11 @@ const Header = () => {
 	return (
 		<S.Wrapper>
 			<S.Logos onClick={goMain}>
-				<S.Logo src="/Assets/zbti.jpg" alt="로고 이미지"></S.Logo>
-				<S.TextLogo src="/Assets/zbti typo.png" alt="로고 이미지"></S.TextLogo>
+				<S.Logo src="/Assets/Images/zbti.jpg" alt="로고 이미지"></S.Logo>
+				<S.TextLogo
+					src="/Assets/Images/zbti typo.png"
+					alt="로고 이미지"
+				></S.TextLogo>
 			</S.Logos>
 
 			<S.MyPage>

@@ -1,28 +1,26 @@
 import { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
-import QuestionApi from '../../../Apis/question';
 import MockApi from '../../../Apis/mockDataApi';
 
 const Test = ({ setArray }) => {
 	const [data, setData] = useState();
 	const [clickedBtns, setClickedBtns] = useState(Array(8).fill(false));
-	useEffect(() => {
-		QuestionApi.question(1, 4)
-			.then(response => {
-				const result = response.data.result;
-				setData(result);
-			})
-			.catch(error => {
-				console.log(error);
-			});
-	}, []);
+	// useEffect(() => {
+	// 	QuestionApi.question(1, 4)
+	// 		.then(response => {
+	// 			const result = response.data.result;
+	// 			setData(result);
+	// 		})
+	// 		.catch(error => {
+	// 			console.log(error);
+	// 		});
+	// }, []);
 
 	useEffect(() => {
 		MockApi.question(1, 4)
 			.then(response => {
-				console.log(response.data.data);
-				const result = response.data.result;
-				console.log(result);
+				const result = response.data.data.slice(0, 4);
+				setData(result);
 			})
 			.catch(error => {
 				console.log(error);
@@ -32,6 +30,9 @@ const Test = ({ setArray }) => {
 	const clickBtn1 = idx => {
 		const updatedClickedBtns = [...clickedBtns];
 		updatedClickedBtns[idx] = !clickedBtns[idx];
+		if (clickedBtns[idx + 4] === true) {
+			updatedClickedBtns[idx + 4] = false;
+		}
 		setClickedBtns(updatedClickedBtns);
 
 		setArray(prevArray => {
@@ -44,6 +45,9 @@ const Test = ({ setArray }) => {
 	const clickBtn2 = idx => {
 		const updatedClickedBtns = [...clickedBtns];
 		updatedClickedBtns[idx + 4] = !clickedBtns[idx + 4];
+		if (clickedBtns[idx] === true) {
+			updatedClickedBtns[idx] = false;
+		}
 		setClickedBtns(updatedClickedBtns);
 
 		setArray(prevArray => {
@@ -62,7 +66,9 @@ const Test = ({ setArray }) => {
 						<S.QuestionWrapper>
 							{data[0]?.question.slice(0, 8)}
 							<BoldText>{data[0]?.question.slice(8, 55)}</BoldText>
-							{data[0]?.question.slice(55)}
+							{data[0]?.question.slice(55, 69)}
+							<br></br>
+							{data[0]?.question.slice(69)}
 						</S.QuestionWrapper>
 						<S.BtnWrapper>
 							<S.AnswerBtn1
@@ -79,11 +85,14 @@ const Test = ({ setArray }) => {
 							</S.AnswerBtn2>
 						</S.BtnWrapper>
 					</S.Container>
+
 					<S.Container>
 						<S.QuestionWrapper>
 							{data[1]?.question.slice(0, 13)}
-							<BoldText>{data[1]?.question.slice(8, 38)}</BoldText>
-							{data[1]?.question.slice(38)}
+							<BoldText>{data[1]?.question.slice(8, 41)}</BoldText>
+							{data[1]?.question.slice(41, 90)}
+							<br></br>
+							{data[1]?.question.slice(90)}
 						</S.QuestionWrapper>
 						<S.BtnWrapper>
 							<S.AnswerBtn1
@@ -129,20 +138,20 @@ const Test = ({ setArray }) => {
 							<BoldText>{data[3]?.question.slice(8, 36)}</BoldText>
 							{data[3]?.question.slice(36)}
 						</S.QuestionWrapper>
-						<S.BtnWrapperLong>
-							<S.AnswerBtn1Long
+						<S.BtnWrapper>
+							<S.AnswerBtn1
 								clicked={clickedBtns[3]}
 								onClick={() => clickBtn1(3)}
 							>
 								{data[3]?.answer1}
-							</S.AnswerBtn1Long>
-							<S.AnswerBtn2Long
+							</S.AnswerBtn1>
+							<S.AnswerBtn2
 								clicked={clickedBtns[7]}
 								onClick={() => clickBtn2(3)}
 							>
 								{data[3]?.answer2}
-							</S.AnswerBtn2Long>
-						</S.BtnWrapperLong>
+							</S.AnswerBtn2>
+						</S.BtnWrapper>
 					</S.Container>
 				</>
 			)}
@@ -158,24 +167,23 @@ const BoldText = styled.span`
 
 const Wrapper = styled.div`
 	width: 100%;
-	text-align: center;
 	color: #407bf0;
 `;
 const Title = styled.div`
 	font-size: 36px;
 	font-weight: 800;
-	margin-bottom: 20px;
+	margin-bottom: 40px;
+	text-align: center;
 `;
 const Container = styled.div`
 	display: flex;
 	justify-content: space-evenly;
-	margin-bottom: 30px;
+	margin-bottom: 50px;
 `;
 const QuestionWrapper = styled.div`
 	width: 40%;
 	color: #407bf0;
-
-	font-size: 14px;
+	font-size: 18px;
 `;
 const BtnWrapper = styled.div`
 	display: flex;
@@ -192,7 +200,7 @@ const BtnWrapper = styled.div`
 const AnswerBtn1 = styled.button`
 	width: 400px;
 	height: 35px;
-	font-size: 12px;
+	font-size: 14px;
 	margin: auto 10px;
 	margin-right: 20px;
 	border: 1px solid #799edc;
@@ -206,7 +214,7 @@ const AnswerBtn1 = styled.button`
 const AnswerBtn2 = styled.button`
 	width: 400px;
 	height: 35px;
-	font-size: 12px;
+	font-size: 14px;
 	text-align: center;
 	margin-right: 30px;
 	margin: auto 10px;

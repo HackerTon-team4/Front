@@ -56,6 +56,8 @@ const Wrapper = styled.div`
 	border-radius: 60px;
 	justify-content: center;
 	background-color: #fafaff;
+	font-family: 'Pretendard-Regular';
+	padding-top: 20px;
 `;
 
 const NextPageBtn = styled.div`
@@ -66,7 +68,8 @@ const NextPageBtn = styled.div`
 	text-align: center;
 	margin: 0 auto;
 	border-radius: 30px;
-	padding: 15px;
+	padding-right: 15px;
+	padding-left: 15px;
 	border: none;
 	margin-top: 20px;
 	justify-content: space-between;
@@ -74,6 +77,7 @@ const NextPageBtn = styled.div`
 	color: white;
 	margin-bottom: 10px;
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+	cursor: pointer;
 `;
 
 const BtnWord = styled.div`

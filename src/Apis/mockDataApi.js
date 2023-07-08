@@ -10,13 +10,8 @@
 import axios from 'axios';
 
 const MockApi = {
-	question(startIndex, endIndex) {
-		return axios.get('/MockData/question.json', {
-			params: {
-				_start: startIndex,
-				_end: endIndex,
-			},
-		});
+	question(page) {
+		return axios.get(`/MockData/question${page}.json`);
 	},
 };
 

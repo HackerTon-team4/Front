@@ -4,7 +4,7 @@ import MockApi from '../../../Apis/mockDataApi';
 
 const Test = ({ setArray }) => {
 	const [data, setData] = useState();
-	const [clickedBtns, setClickedBtns] = useState(Array(8).fill(false));
+	const [clickedBtns, setClickedBtns] = useState(Array(8).fill(0));
 	// useEffect(() => {
 	// 	QuestionApi.question(1, 4)
 	// 		.then(response => {
@@ -17,7 +17,7 @@ const Test = ({ setArray }) => {
 	// }, []);
 
 	useEffect(() => {
-		MockApi.question(1, 4)
+		MockApi.question(1)
 			.then(response => {
 				const result = response.data.data.slice(0, 4);
 				setData(result);
@@ -30,8 +30,8 @@ const Test = ({ setArray }) => {
 	const clickBtn1 = idx => {
 		const updatedClickedBtns = [...clickedBtns];
 		updatedClickedBtns[idx] = !clickedBtns[idx];
-		if (clickedBtns[idx + 4] === true) {
-			updatedClickedBtns[idx + 4] = false;
+		if (clickedBtns[idx + 4] === 1) {
+			updatedClickedBtns[idx + 4] = 0;
 		}
 		setClickedBtns(updatedClickedBtns);
 
@@ -45,8 +45,8 @@ const Test = ({ setArray }) => {
 	const clickBtn2 = idx => {
 		const updatedClickedBtns = [...clickedBtns];
 		updatedClickedBtns[idx + 4] = !clickedBtns[idx + 4];
-		if (clickedBtns[idx] === true) {
-			updatedClickedBtns[idx] = false;
+		if (clickedBtns[idx] === 1) {
+			updatedClickedBtns[idx] = 0;
 		}
 		setClickedBtns(updatedClickedBtns);
 
@@ -197,7 +197,7 @@ const BtnWrapper = styled.div`
 	}
 `;
 
-const AnswerBtn1 = styled.button`
+const AnswerBtn1 = styled.div`
 	width: 400px;
 	height: 35px;
 	font-size: 14px;
@@ -206,16 +206,18 @@ const AnswerBtn1 = styled.button`
 	border: 1px solid #799edc;
 	border-radius: 30px;
 	text-align: center;
+	padding-top: 10px;
 	background-color: white;
 	cursor: pointer;
-	color: ${props => (props.clicked ? ' white' : '#407bf0')};
-	background-color: ${props => (props.clicked ? ' #407bf0' : 'white')};
+	color: ${props => (props.clicked > 0 ? ' white' : '#407bf0')};
+	background-color: ${props => (props.clicked > 0 ? ' #407bf0' : 'white')};
 `;
-const AnswerBtn2 = styled.button`
+const AnswerBtn2 = styled.div`
 	width: 400px;
 	height: 35px;
 	font-size: 14px;
 	text-align: center;
+	padding-top: 10px;
 	margin-right: 30px;
 	margin: auto 10px;
 	border: 1px solid #799edc;
@@ -223,8 +225,8 @@ const AnswerBtn2 = styled.button`
 	color: #407bf0;
 	background-color: white;
 	cursor: pointer;
-	color: ${props => (props.clicked ? ' white' : '#407bf0')};
-	background-color: ${props => (props.clicked ? ' #407bf0' : 'white')};
+	color: ${props => (props.clicked > 0 ? ' white' : '#407bf0')};
+	background-color: ${props => (props.clicked > 0 ? ' #407bf0' : 'white')};
 `;
 const BtnWrapperLong = styled.div`
 	width: 50%;

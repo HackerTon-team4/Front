@@ -10,8 +10,10 @@
 import axios from 'axios';
 
 const MockApi = {
-	question(page) {
-		return axios.get(`/MockData/question${page}.json`);
+	async question(page) {
+		const response = await axios.get(`/MockData/question1.json`);
+		const data = response.data.page[`${page - 1}`];
+		return data;
 	},
 };
 

@@ -7,10 +7,9 @@ const Test2 = ({ setArray }) => {
 	const [clickedBtns, setClickedBtns] = useState(Array(8).fill(false));
 
 	useEffect(() => {
-		MockApi.question(2)
+		MockApi.question(1)
 			.then(response => {
-				const result = response.data.data.slice(0, 4);
-				setData(result);
+				setData(response.qna);
 			})
 			.catch(error => {
 				console.log(error);

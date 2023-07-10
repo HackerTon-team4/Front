@@ -1,13 +1,20 @@
 import { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
 import MockApi from '../../../Apis/mockDataApi';
+import {
+	answerBtn,
+	btnWrapper,
+	container,
+	questionWrapper,
+	title,
+} from '../../../Styles/common';
 
 const Test2 = ({ setArray }) => {
 	const [data, setData] = useState();
 	const [clickedBtns, setClickedBtns] = useState(Array(8).fill(false));
 
 	useEffect(() => {
-		MockApi.question(1)
+		MockApi.question(2)
 			.then(response => {
 				setData(response.qna);
 			})
@@ -124,20 +131,20 @@ const Test2 = ({ setArray }) => {
 							<BoldText>{data[3]?.question.slice(3, 11)}</BoldText>
 							{data[3]?.question.slice(11)}
 						</S.QuestionWrapper>
-						<S.BtnWrapperLong>
-							<S.AnswerBtn1Long
+						<S.BtnWrapper>
+							<S.AnswerBtn1
 								clicked={clickedBtns[3].toString()}
 								onClick={() => clickBtn1(7)}
 							>
 								{data[3]?.answer1}
-							</S.AnswerBtn1Long>
-							<S.AnswerBtn2Long
+							</S.AnswerBtn1>
+							<S.AnswerBtn2
 								clicked={clickedBtns[7].toString()}
 								onClick={() => clickBtn2(7)}
 							>
 								{data[3]?.answer2}
-							</S.AnswerBtn2Long>
-						</S.BtnWrapperLong>
+							</S.AnswerBtn2>
+						</S.BtnWrapper>
 					</S.Container>
 				</>
 			)}
@@ -152,104 +159,28 @@ const BoldText = styled.span`
 
 const Wrapper = styled.div`
 	width: 100%;
-	text-align: center;
 	color: #407bf0;
 `;
 const Title = styled.div`
-	font-size: 36px;
-	font-weight: 800;
-	margin-bottom: 20px;
+	${title}
 `;
 const Container = styled.div`
-	display: flex;
-	justify-content: space-evenly;
-	margin-bottom: 30px;
+	${container}
 `;
 const QuestionWrapper = styled.div`
-	width: 40%;
-	color: #407bf0;
-	font-size: 14px;
+	${questionWrapper}
 `;
 const BtnWrapper = styled.div`
-	display: flex;
-	width: 50%;
-	justify-content: center;
-	font-size: 8px;
-	:hover {
-		background-color: #407bf0;
-		color: white;
-		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-	}
+	${btnWrapper}
 `;
 
 const AnswerBtn1 = styled.button`
-	width: 400px;
-	height: 35px;
-	font-size: 12px;
-	margin: auto 10px;
-	margin-right: 20px;
-	border: 1px solid #799edc;
-	border-radius: 30px;
-	text-align: center;
-	background-color: white;
-	cursor: pointer;
-	color: ${props => (props.clicked === 'true' ? ' white' : '#407bf0')};
-	background-color: ${props =>
-		props.clicked === 'true' ? ' #407bf0' : 'white'};
+	${answerBtn}
 `;
 const AnswerBtn2 = styled.button`
-	width: 400px;
-	height: 35px;
-	font-size: 12px;
-	text-align: center;
-	margin-right: 30px;
-	margin: auto 10px;
-	border: 1px solid #799edc;
-	border-radius: 30px;
-	background-color: white;
-	cursor: pointer;
-	color: ${props => (props.clicked === 'true' ? ' white' : '#407bf0')};
-	background-color: ${props =>
-		props.clicked === 'true' ? ' #407bf0' : 'white'};
+	${answerBtn}
 `;
-const BtnWrapperLong = styled.div`
-	width: 50%;
-	:hover {
-		background-color: #407bf0;
-		color: white;
-		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-	}
-`;
-const AnswerBtn1Long = styled.button`
-	width: 400px;
-	height: 35px;
-	font-size: 12px;
-	margin: auto 10px;
-	border: 1px solid #799edc;
-	border-radius: 30px;
-	text-align: center;
-	background-color: white;
-	cursor: pointer;
-	color: ${props => (props.clicked === 'true' ? ' white' : '#407bf0')};
-	background-color: ${props =>
-		props.clicked === 'true' ? ' #407bf0' : 'white'};
-`;
-const AnswerBtn2Long = styled.button`
-	width: 400px;
-	height: 35px;
-	margin-right: 30px;
-	margin-top: 20px;
-	text-align: center;
-	margin: 10px 10px;
-	border: 1px solid #799edc;
-	border-radius: 30px;
-	padding: auto 0;
-	background-color: white;
-	cursor: pointer;
-	color: ${props => (props.clicked === 'true' ? ' white' : '#407bf0')};
-	background-color: ${props =>
-		props.clicked === 'true' ? ' #407bf0' : 'white'};
-`;
+
 const S = {
 	Wrapper,
 	Title,
@@ -258,7 +189,4 @@ const S = {
 	BtnWrapper,
 	AnswerBtn1,
 	AnswerBtn2,
-	BtnWrapperLong,
-	AnswerBtn1Long,
-	AnswerBtn2Long,
 };

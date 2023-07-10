@@ -228,34 +228,7 @@ const BtnWrapperLong = styled.div`
 		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 	}
 `;
-const AnswerBtn1Long = styled.button`
-	width: 400px;
-	height: 30px;
-	font-size: 12px;
-	border: 1px solid #799edc;
-	border-radius: 30px;
-	text-align: center;
-	color: #407bf0;
-	background-color: white;
-	cursor: pointer;
-	color: ${props => (props.clicked ? ' white' : '#407bf0')};
-	background-color: ${props => (props.clicked ? ' #407bf0' : 'white')};
-`;
-const AnswerBtn2Long = styled.button`
-	width: 400px;
-	margin-right: 30px;
-	margin-top: 20px;
-	text-align: center;
-	margin: 10px auto;
-	border: 1px solid #799edc;
-	border-radius: 30px;
-	padding: 15px;
-	color: #407bf0;
-	background-color: white;
-	cursor: pointer;
-	color: ${props => (props.clicked ? ' white' : '#407bf0')};
-	background-color: ${props => (props.clicked ? ' #407bf0' : 'white')};
-`;
+
 const S = {
 	Wrapper,
 	Title,
@@ -264,7 +237,4 @@ const S = {
 	BtnWrapper,
 	AnswerBtn1,
 	AnswerBtn2,
-	BtnWrapperLong,
-	AnswerBtn1Long,
-	AnswerBtn2Long,
 };

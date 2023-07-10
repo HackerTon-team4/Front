@@ -4,17 +4,7 @@ import MockApi from '../../../Apis/mockDataApi';
 
 const Test = ({ setArray }) => {
 	const [data, setData] = useState();
-	const [clickedBtns, setClickedBtns] = useState(Array(8).fill(0));
-	// useEffect(() => {
-	// 	QuestionApi.question(1, 4)
-	// 		.then(response => {
-	// 			const result = response.data.result;
-	// 			setData(result);
-	// 		})
-	// 		.catch(error => {
-	// 			console.log(error);
-	// 		});
-	// }, []);
+	const [clickedBtns, setClickedBtns] = useState(Array(8).fill(false));
 
 	useEffect(() => {
 		MockApi.question(1)
@@ -30,8 +20,9 @@ const Test = ({ setArray }) => {
 	const clickBtn1 = idx => {
 		const updatedClickedBtns = [...clickedBtns];
 		updatedClickedBtns[idx] = !clickedBtns[idx];
-		if (clickedBtns[idx + 4] === 1) {
-			updatedClickedBtns[idx + 4] = 0;
+
+		if (clickedBtns[idx + 4] === true) {
+			updatedClickedBtns[idx + 4] = false;
 		}
 		setClickedBtns(updatedClickedBtns);
 
@@ -45,8 +36,8 @@ const Test = ({ setArray }) => {
 	const clickBtn2 = idx => {
 		const updatedClickedBtns = [...clickedBtns];
 		updatedClickedBtns[idx + 4] = !clickedBtns[idx + 4];
-		if (clickedBtns[idx] === 1) {
-			updatedClickedBtns[idx] = 0;
+		if (clickedBtns[idx] === true) {
+			updatedClickedBtns[idx] = false;
 		}
 		setClickedBtns(updatedClickedBtns);
 
@@ -72,13 +63,13 @@ const Test = ({ setArray }) => {
 						</S.QuestionWrapper>
 						<S.BtnWrapper>
 							<S.AnswerBtn1
-								clicked={clickedBtns[0]}
+								clicked={clickedBtns[0].toString()}
 								onClick={() => clickBtn1(0)}
 							>
 								{data[0]?.answer1}
 							</S.AnswerBtn1>
 							<S.AnswerBtn2
-								clicked={clickedBtns[4]}
+								clicked={clickedBtns[4].toString()}
 								onClick={() => clickBtn2(0)}
 							>
 								{data[0]?.answer2}
@@ -96,13 +87,13 @@ const Test = ({ setArray }) => {
 						</S.QuestionWrapper>
 						<S.BtnWrapper>
 							<S.AnswerBtn1
-								clicked={clickedBtns[1]}
+								clicked={clickedBtns[1].toString()}
 								onClick={() => clickBtn1(1)}
 							>
 								{data[1]?.answer1}
 							</S.AnswerBtn1>
 							<S.AnswerBtn2
-								clicked={clickedBtns[5]}
+								clicked={clickedBtns[5].toString()}
 								onClick={() => clickBtn2(1)}
 							>
 								{data[1]?.answer2}
@@ -118,13 +109,13 @@ const Test = ({ setArray }) => {
 						</S.QuestionWrapper>
 						<S.BtnWrapper>
 							<S.AnswerBtn1
-								clicked={clickedBtns[2]}
+								clicked={clickedBtns[2].toString()}
 								onClick={() => clickBtn1(2)}
 							>
 								{data[2]?.answer1}
 							</S.AnswerBtn1>
 							<S.AnswerBtn2
-								clicked={clickedBtns[6]}
+								clicked={clickedBtns[6].toString()}
 								onClick={() => clickBtn2(2)}
 							>
 								{data[2]?.answer2}
@@ -140,13 +131,13 @@ const Test = ({ setArray }) => {
 						</S.QuestionWrapper>
 						<S.BtnWrapper>
 							<S.AnswerBtn1
-								clicked={clickedBtns[3]}
+								clicked={clickedBtns[3].toString()}
 								onClick={() => clickBtn1(3)}
 							>
 								{data[3]?.answer1}
 							</S.AnswerBtn1>
 							<S.AnswerBtn2
-								clicked={clickedBtns[7]}
+								clicked={clickedBtns[7].toString()}
 								onClick={() => clickBtn2(3)}
 							>
 								{data[3]?.answer2}
@@ -209,8 +200,9 @@ const AnswerBtn1 = styled.div`
 	padding-top: 10px;
 	background-color: white;
 	cursor: pointer;
-	color: ${props => (props.clicked > 0 ? ' white' : '#407bf0')};
-	background-color: ${props => (props.clicked > 0 ? ' #407bf0' : 'white')};
+	color: ${props => (props.clicked === 'true' ? ' white' : '#407bf0')};
+	background-color: ${props =>
+		props.clicked === 'true' ? ' #407bf0' : 'white'};
 `;
 const AnswerBtn2 = styled.div`
 	width: 400px;
@@ -225,8 +217,9 @@ const AnswerBtn2 = styled.div`
 	color: #407bf0;
 	background-color: white;
 	cursor: pointer;
-	color: ${props => (props.clicked > 0 ? ' white' : '#407bf0')};
-	background-color: ${props => (props.clicked > 0 ? ' #407bf0' : 'white')};
+	color: ${props => (props.clicked === 'true' ? ' white' : '#407bf0')};
+	background-color: ${props =>
+		props.clicked === 'true' ? ' #407bf0' : 'white'};
 `;
 const BtnWrapperLong = styled.div`
 	width: 50%;

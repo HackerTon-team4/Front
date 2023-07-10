@@ -20,6 +20,9 @@ const Test2 = ({ setArray }) => {
 	const clickBtn1 = idx => {
 		const updatedClickedBtns = [...clickedBtns];
 		updatedClickedBtns[idx - 4] = !clickedBtns[idx - 4];
+		if (clickedBtns[idx] === true) {
+			updatedClickedBtns[idx] = false;
+		}
 		setClickedBtns(updatedClickedBtns);
 
 		setArray(prevArray => {
@@ -32,6 +35,10 @@ const Test2 = ({ setArray }) => {
 	const clickBtn2 = idx => {
 		const updatedClickedBtns = [...clickedBtns];
 		updatedClickedBtns[idx] = !clickedBtns[idx];
+		if (clickedBtns[idx - 4] === true) {
+			updatedClickedBtns[idx - 4] = false;
+		}
+
 		setClickedBtns(updatedClickedBtns);
 
 		setArray(prevArray => {
@@ -40,6 +47,7 @@ const Test2 = ({ setArray }) => {
 			return newArray;
 		});
 	};
+
 	return (
 		<S.Wrapper>
 			{data && (
@@ -53,13 +61,13 @@ const Test2 = ({ setArray }) => {
 						</S.QuestionWrapper>
 						<S.BtnWrapper>
 							<S.AnswerBtn1
-								clicked={clickedBtns[0]}
+								clicked={clickedBtns[0].toString()}
 								onClick={() => clickBtn1(4)}
 							>
 								{data[0]?.answer1}
 							</S.AnswerBtn1>
 							<S.AnswerBtn2
-								clicked={clickedBtns[4]}
+								clicked={clickedBtns[4].toString()}
 								onClick={() => clickBtn2(4)}
 							>
 								{data[0]?.answer2}
@@ -75,13 +83,13 @@ const Test2 = ({ setArray }) => {
 						</S.QuestionWrapper>
 						<S.BtnWrapper>
 							<S.AnswerBtn1
-								clicked={clickedBtns[1]}
+								clicked={clickedBtns[1].toString()}
 								onClick={() => clickBtn1(5)}
 							>
 								{data[1]?.answer1}
 							</S.AnswerBtn1>
 							<S.AnswerBtn2
-								clicked={clickedBtns[5]}
+								clicked={clickedBtns[5].toString()}
 								onClick={() => clickBtn2(5)}
 							>
 								{data[1]?.answer2}
@@ -97,13 +105,13 @@ const Test2 = ({ setArray }) => {
 						</S.QuestionWrapper>
 						<S.BtnWrapper>
 							<S.AnswerBtn1
-								clicked={clickedBtns[2]}
+								clicked={clickedBtns[2].toString()}
 								onClick={() => clickBtn1(6)}
 							>
 								{data[2]?.answer1}
 							</S.AnswerBtn1>
 							<S.AnswerBtn2
-								clicked={clickedBtns[6]}
+								clicked={clickedBtns[6].toString()}
 								onClick={() => clickBtn2(6)}
 							>
 								{data[2]?.answer2}
@@ -119,13 +127,13 @@ const Test2 = ({ setArray }) => {
 						</S.QuestionWrapper>
 						<S.BtnWrapperLong>
 							<S.AnswerBtn1Long
-								clicked={clickedBtns[3]}
+								clicked={clickedBtns[3].toString()}
 								onClick={() => clickBtn1(7)}
 							>
 								{data[3]?.answer1}
 							</S.AnswerBtn1Long>
 							<S.AnswerBtn2Long
-								clicked={clickedBtns[7]}
+								clicked={clickedBtns[7].toString()}
 								onClick={() => clickBtn2(7)}
 							>
 								{data[3]?.answer2}
@@ -186,8 +194,9 @@ const AnswerBtn1 = styled.button`
 	text-align: center;
 	background-color: white;
 	cursor: pointer;
-	color: ${props => (props.clicked ? ' white' : '#407bf0')};
-	background-color: ${props => (props.clicked ? ' #407bf0' : 'white')};
+	color: ${props => (props.clicked === 'true' ? ' white' : '#407bf0')};
+	background-color: ${props =>
+		props.clicked === 'true' ? ' #407bf0' : 'white'};
 `;
 const AnswerBtn2 = styled.button`
 	width: 400px;
@@ -200,8 +209,9 @@ const AnswerBtn2 = styled.button`
 	border-radius: 30px;
 	background-color: white;
 	cursor: pointer;
-	color: ${props => (props.clicked ? ' white' : '#407bf0')};
-	background-color: ${props => (props.clicked ? ' #407bf0' : 'white')};
+	color: ${props => (props.clicked === 'true' ? ' white' : '#407bf0')};
+	background-color: ${props =>
+		props.clicked === 'true' ? ' #407bf0' : 'white'};
 `;
 const BtnWrapperLong = styled.div`
 	width: 50%;
@@ -221,8 +231,9 @@ const AnswerBtn1Long = styled.button`
 	text-align: center;
 	background-color: white;
 	cursor: pointer;
-	color: ${props => (props.clicked ? ' white' : '#407bf0')};
-	background-color: ${props => (props.clicked ? ' #407bf0' : 'white')};
+	color: ${props => (props.clicked === 'true' ? ' white' : '#407bf0')};
+	background-color: ${props =>
+		props.clicked === 'true' ? ' #407bf0' : 'white'};
 `;
 const AnswerBtn2Long = styled.button`
 	width: 400px;
@@ -236,8 +247,9 @@ const AnswerBtn2Long = styled.button`
 	padding: auto 0;
 	background-color: white;
 	cursor: pointer;
-	color: ${props => (props.clicked ? ' white' : '#407bf0')};
-	background-color: ${props => (props.clicked ? ' #407bf0' : 'white')};
+	color: ${props => (props.clicked === 'true' ? ' white' : '#407bf0')};
+	background-color: ${props =>
+		props.clicked === 'true' ? ' #407bf0' : 'white'};
 `;
 const S = {
 	Wrapper,

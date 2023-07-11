@@ -1,11 +1,9 @@
 import { styled } from 'styled-components';
 
-import { useRecoilValue } from 'recoil';
-import { stock } from '../Atom/stockAtom';
-
 const RecommendPage = () => {
-	const stockArray = useRecoilValue(stock);
-	console.log(stockArray);
+	// const stockArray = useRecoilValue(stock);
+
+	const stockArray = [{ name: 'AAPL' }, { name: 'BRKb' }, { name: 'NVDA' }];
 	return (
 		<WholeWrapper>
 			<S.Wrapper>
@@ -40,7 +38,7 @@ const WholeWrapper = styled.div`
 const BackGround = styled.div`
 	width: 40%;
 	margin-right: 100px;
-	background-image: url('Assets/Images/backGround.png');
+	background-image: url('/Assets/Images/backGround.png');
 	background-size: cover;
 	background-position: center;
 	z-index: 10;

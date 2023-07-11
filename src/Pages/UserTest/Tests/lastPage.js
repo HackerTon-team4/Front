@@ -1,16 +1,12 @@
-import { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
-import QuestionApi from '../../../Apis/question';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilValue } from 'recoil';
 import { arrayState } from '../../Atom/atom';
 import { useNavigate } from 'react-router-dom';
-import { stock } from '../../Atom/stockAtom';
 
 const LastPage = () => {
 	const array = useRecoilValue(arrayState);
-	const [recommend, setRecommend] = useRecoilState(stock);
+	//const [recommend, setRecommend] = useRecoilState(stock);
 
-	const [data, setData] = useState();
 	const answers = [];
 	for (let i = 1; i <= 24; i++) {
 		answers.push({
@@ -20,21 +16,26 @@ const LastPage = () => {
 	}
 
 	const navigate = useNavigate();
+	const data = {
+		code: 'caVb',
+		content:
+			'기업의 가치를 중요시하고, 수익을 최대화할 수 있는 방법을 추구하는 당신! 투자할 때 신중하지만 기회를 놓치지 않는 투자자군요 😊?',
+	};
 
-	useEffect(() => {
-		if (answers.length === 24) {
-			QuestionApi.submit({ answers })
-				.then(response => {
-					const result = response.data.trait;
-					setData(result);
-					const stock = response.data.stocks;
-					setRecommend(stock);
-				})
-				.catch(error => {
-					alert(error.response.data.message);
-				});
-		}
-	}, []);
+	// useEffect(() => {
+	// 	if (answers.length === 24) {
+	// 		QuestionApi.submit({ answers })
+	// 			.then(response => {
+	// 				const result = response.data.trait;
+	// 				setData(result);
+	// 				const stock = response.data.stocks;
+	// 				setRecommend(stock);
+	// 			})
+	// 			.catch(error => {
+	// 				alert(error.response.data.message);
+	// 			});
+	// 	}
+	// }, []);
 
 	const goFirst = () => {
 		navigate('/test/0');
@@ -110,11 +111,11 @@ const Right = styled.div`
 
 const SubTitle = styled.div`
 	margin-bottom: 20px;
-	font-size: 20px;
+	font-size: 22px;
 `;
 
 const Description = styled.div`
-	font-size: 16px;
+	font-size: 18px;
 `;
 
 const Keyword = styled.div``;
@@ -128,13 +129,12 @@ const GoMain = styled.div`
 	margin: 20px auto;
 	margin-top: 70px;
 	outline: 1px solid #407bf0;
-	align-items: center;
 	background-color: white;
 	text-decoration: none;
 	border-radius: 30px;
 	padding: 15px;
 	justify-content: space-between;
-	padding-left: 40px;
+	padding-left: 120px;
 `;
 
 const GoRecommend = styled.div`
@@ -146,11 +146,11 @@ const GoRecommend = styled.div`
 	outline: 1px solid #407bf0;
 	align-items: center;
 	background-color: #407bf0;
-	text-align: center;
 	border-radius: 30px;
 	padding: 0 15px;
 	justify-content: space-between;
 	color: white;
+	padding-left: 50px;
 `;
 
 const S = {

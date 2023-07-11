@@ -26,8 +26,8 @@ const Test3 = ({ setArray }) => {
 	const clickBtn1 = idx => {
 		const updatedClickedBtns = [...clickedBtns];
 		updatedClickedBtns[idx - 8] = !clickedBtns[idx - 8];
-		if (clickedBtns[[idx - 4]] === true) {
-			updatedClickedBtns[[idx - 4]] = false;
+		if (clickedBtns[idx - 4] === true) {
+			updatedClickedBtns[idx - 4] = false;
 		}
 
 		setClickedBtns(updatedClickedBtns);
@@ -41,7 +41,7 @@ const Test3 = ({ setArray }) => {
 
 	const clickBtn2 = idx => {
 		const updatedClickedBtns = [...clickedBtns];
-		updatedClickedBtns[idx - 8] = !clickedBtns[idx - 4];
+		updatedClickedBtns[idx - 4] = !clickedBtns[idx - 4];
 		if (clickedBtns[idx - 8] === true) {
 			updatedClickedBtns[idx - 8] = false;
 		}
